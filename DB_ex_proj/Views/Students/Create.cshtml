@@ -1,0 +1,63 @@
+﻿@model DB_ex_proj.Models.Student
+
+@{
+    ViewData["Title"] = "Додати студента";
+}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">👤 Реєстрація нового студента</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="FullName" class="form-label">ПІБ студента</label>
+                        <input asp-for="FullName" class="form-control" required placeholder="Наприклад: Сидоренко Іван Петрович" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label">Електронна пошта</label>
+                        <input asp-for="Email" type="email" class="form-control" required placeholder="ivan@example.com" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label">Пароль аккаунта</label>
+                        <input asp-for="Password" type="password" class="form-control" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Passport" class="form-label">Паспортні дані</label>
+                        <input asp-for="Passport" class="form-control" required placeholder="СС123456 або ID-номер" />
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="EnrollmentDate" class="form-label">Дата вступу</label>
+                            <input asp-for="EnrollmentDate" type="date" class="form-control" required />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Rating" class="form-label">Поточний рейтинг</label>
+                            <input asp-for="Rating" type="number" step="0.1" class="form-control" required placeholder="85.5" />
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="GroupId" class="form-label">Навчальна група</label>
+                        <select asp-for="GroupId" class="form-select" asp-items="ViewBag.Groups" required>
+                            <option value="">-- Оберіть групу зі списку --</option>
+                        </select>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="/" class="btn btn-outline-secondary">↩ Повернутись до меню</a>
+                        <button type="submit" class="btn btn-success">💾 Зберегти дані</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
