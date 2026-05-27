@@ -21,6 +21,9 @@ public class StudentsController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(Student student)
     {
+        ModelState.Remove("Group");
+        ModelState.Remove("Certificates");
+
         if (ModelState.IsValid)
         {
             _context.Add(student);
