@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Головне меню";
+}
+
+<div class="text-center my-4">
+    <h1 class="display-4 fw-bold text-primary">ІС «Навчальний IT-центр»</h1>
+    <p class="lead text-muted">Головна форма-меню керування базою даних</p>
+</div>
+
+<div class="row g-4 mt-2">
+    <div class="col-md-6">
+        <div class="card h-100 shadow-sm border-start border-4 border-info">
+            <div class="card-body">
+                <h5 class="card-title fw-bold text-info">Користувачі та Структура</h5>
+                <p class="card-text text-muted">Введення та редагування списків студентів, викладачів, груп та аудиторій.</p>
+                <div class="d-grid gap-2">
+                    <a href="/Students/Create" class="btn btn-outline-info text-dark text-start">👤 Форма: Додати нового Студента</a>
+                    <a href="/Teachers/Create" class="btn btn-outline-info text-dark text-start">👨‍🏫 Форма: Додати нового Викладача</a>
+                    <a href="/Groups/Create" class="btn btn-outline-info text-dark text-start">👥 Форма: Створити навчальну Групу</a>
+                    <a href="/Auditoriums/Create" class="btn btn-outline-info text-dark text-start">🚪 Форма: Зареєструвати Аудиторію</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card h-100 shadow-sm border-start border-4 border-success">
+            <div class="card-body">
+                <h5 class="card-title fw-bold text-success">Навчальні програми та Сертифікація</h5>
+                <p class="card-text text-muted">Керування курсами, поділ на змістовні модулі та фіксація видачі сертифікатів.</p>
+                <div class="d-grid gap-2">
+                    <a href="/Courses/Create" class="btn btn-outline-success text-dark text-start">📚 Форма: Створити новий Курс</a>
+                    <a href="/CourseAssignments/Create" class="btn btn-outline-success text-dark text-start">🔗 Форма: Призначити викладача на курс групи</a>
+                    <a href="/Certificates/Create" class="btn btn-outline-success text-dark text-start">🎓 Форма: Видати Сертифікат</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card shadow-sm bg-light">
+            <div class="card-body">
+                <h5 class="card-title fw-bold text-secondary">📊 Аналітика та Запити (Частина 3)</h5>
+                <p class="card-text small text-muted">Тут будуть розміщені посилання на 5 простих параметризованих запитів та 2 запити з множинними порівняннями.</p>
+                <div class="btn-group w-100" role="group">
+                    <button class="btn btn-secondary disabled">Запит 1</button>
+                    <button class="btn btn-secondary disabled">Запит 2</button>
+                    <button class="btn btn-secondary disabled">Запит 3</button>
+                    <button class="btn btn-secondary disabled">Множинний запит 1</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
