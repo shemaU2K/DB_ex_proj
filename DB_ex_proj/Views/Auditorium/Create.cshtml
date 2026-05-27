@@ -1,0 +1,28 @@
+﻿@model DB_ex_proj.Models.Auditorium
+
+@{
+    ViewData["Title"] = "Додати аудиторію";
+}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-5">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0">🚪 Реєстрація Аудиторії</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create" method="post">
+                    <div class="mb-4">
+                        <label asp-for="RoomNumber" class="form-label fw-bold">Номер кабінету / Назва</label>
+                        <input asp-for="RoomNumber" class="form-control" required placeholder="Напр: 305-B або Лабораторія 1" />
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="/" class="btn btn-outline-secondary">↩ Повернутись до меню</a>
+                        <button type="submit" class="btn btn-success">💾 Зберегти</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
