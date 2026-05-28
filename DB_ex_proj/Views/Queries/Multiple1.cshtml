@@ -1,0 +1,49 @@
+﻿@model IEnumerable<DB_ex_proj.Models.Teacher>
+
+@{
+    ViewData["Title"] = "Множинний запит 1";
+}
+
+<div class="container mt-4">
+    <h2 class="text-danger fw-bold">✨ Множинний запит 1: Збіг кваліфікацій</h2>
+    <p class="text-muted">Демонстрація реляційного ділення. Знаходить викладачів, які викладають <b>абсолютно такий самий набір курсів</b>, як обраний викладач (використання квантора ALL).</p>
+
+    <div class="card shadow-sm mb-4 border-danger">
+        <div class="card-body">
+            <form asp-action="Multiple1" method="get" class="d-flex align-items-end gap-3">
+                <div class="flex-grow-1">
+                    <label for="teacherId" class="form-label fw-bold text-danger">Оберіть цільового викладача:</label>
+                    <select id="teacherId" name="teacherId" class="form-select border-danger" asp-items="ViewBag.Teachers" required>
+                        <option value="">-- Виберіть зі списку --</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-danger">Знайти колег</button>
+                <a href="/" class="btn btn-outline-secondary">↩ Меню</a>
+            </form>
+        </div>
+    </div>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-info">@ViewBag.Message</div>
+    }
+    else if (Model != null && Model.Any())
+    {
+        <div class="alert alert-success">Знайдено викладачів з ідентичним набором курсів: <strong>@Model.Count()</strong></div>
+        <table class="table table-hover table-bordered shadow-sm">
+            <thead class="table-dark">
+                <tr><th>ПІБ Викладача</th><th>Спеціалізація</th></tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr><td class="fw-bold">@item.FullName</td><td>@item.Specialization</td></tr>
+                }
+            </tbody>
+        </table>
+    }
+    else if (Context.Request.Query.ContainsKey("teacherId"))
+    {
+        <div class="alert alert-warning">Не знайдено жодного іншого викладача, який викладає точно такий самий набір дисциплін.</div>
+    }
+</div>

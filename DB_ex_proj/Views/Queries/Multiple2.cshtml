@@ -1,0 +1,49 @@
+﻿@model IEnumerable<DB_ex_proj.Models.Student>
+
+@{
+    ViewData["Title"] = "Множинний запит 2";
+}
+
+<div class="container mt-4">
+    <h2 class="text-danger fw-bold">✨ Множинний запит 2: Однаковий прогрес</h2>
+    <p class="text-muted">Реляційне ділення для студентів. Знаходить тих, хто отримав сертифікати за <b>абсолютно ті самі курси</b>, що й обраний студент.</p>
+
+    <div class="card shadow-sm mb-4 border-danger">
+        <div class="card-body">
+            <form asp-action="Multiple2" method="get" class="d-flex align-items-end gap-3">
+                <div class="flex-grow-1">
+                    <label for="studentId" class="form-label fw-bold text-danger">Оберіть цільового студента:</label>
+                    <select id="studentId" name="studentId" class="form-select border-danger" asp-items="ViewBag.Students" required>
+                        <option value="">-- Виберіть зі списку --</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-danger">Шукати збіги</button>
+                <a href="/" class="btn btn-outline-secondary">↩ Меню</a>
+            </form>
+        </div>
+    </div>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-info">@ViewBag.Message</div>
+    }
+    else if (Model != null && Model.Any())
+    {
+        <div class="alert alert-success">Знайдено студентів з ідентичним набором сертифікатів: <strong>@Model.Count()</strong></div>
+        <table class="table table-hover table-bordered shadow-sm">
+            <thead class="table-dark">
+                <tr><th>ПІБ Студента</th><th>Рейтинг</th></tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr><td class="fw-bold">@item.FullName</td><td>@item.Rating</td></tr>
+                }
+            </tbody>
+        </table>
+    }
+    else if (Context.Request.Query.ContainsKey("studentId"))
+    {
+        <div class="alert alert-warning">Немає студентів з точно таким самим набором сертифікатів, як у цього.</div>
+    }
+</div>
