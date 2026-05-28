@@ -1,0 +1,63 @@
+﻿@model DB_ex_proj.Models.Course
+
+@{
+    ViewData["Title"] = "Деталі курсу";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm mb-4 border-success">
+        <div class="card-header bg-success text-white">
+            <h4 class="mb-0">📚 Курс: @Model.Title</h4>
+        </div>
+        <div class="card-body">
+            <p><strong>Опис:</strong> @Model.Description</p>
+            <p><strong>Загальна тривалість:</strong> @Model.Duration годин</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-7">
+            <h5 class="text-primary">📑 Змістовні модулі</h5>
+            @if (Model.Modules != null && Model.Modules.Any())
+            {
+                <ul class="list-group shadow-sm">
+                    @foreach (var mod in Model.Modules)
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            @mod.SectionName
+                            <span class="badge bg-secondary rounded-pill">@mod.Hours год.</span>
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <div class="alert alert-warning">Для цього курсу ще не додано жодного модуля.</div>
+            }
+            <a href="/" class="btn btn-outline-secondary mt-3">↩ Повернутись до меню</a>
+        </div>
+
+        <div class="col-md-5">
+            <div class="card shadow-sm bg-light">
+                <div class="card-body">
+                    <h5 class="card-title text-success mb-3">➕ Додати новий модуль</h5>
+
+                    <form asp-action="AddModule" method="post">
+                        <input type="hidden" name="CourseId" value="@Model.Id" />
+
+                        <div class="mb-3">
+                            <label class="form-label">Назва розділу</label>
+                            <input type="text" name="SectionName" class="form-control" required placeholder="Напр: Вступ до ООП" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Кількість годин</label>
+                            <input type="number" name="Hours" class="form-control" required min="1" placeholder="10" />
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Зберегти модуль</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

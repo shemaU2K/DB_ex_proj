@@ -1,0 +1,38 @@
+﻿@model DB_ex_proj.Models.Course
+
+@{
+    ViewData["Title"] = "Створити курс";
+}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+        <div class="card shadow border-success">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">📚 Створення навчального Курсу</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label fw-bold">Назва курсу</label>
+                        <input asp-for="Title" class="form-control" required placeholder="Наприклад: Розширена розробка на Python" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Duration" class="form-label fw-bold">Тривалість (в годинах)</label>
+                        <input asp-for="Duration" type="number" class="form-control" required placeholder="40" min="1" />
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Description" class="form-label fw-bold">Опис програми</label>
+                        <textarea asp-for="Description" class="form-control" rows="4" required placeholder="Що студенти вивчать на цьому курсі..."></textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="/" class="btn btn-outline-secondary">↩ Повернутись до меню</a>
+                        <button type="submit" class="btn btn-success">💾 Зберегти курс</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
