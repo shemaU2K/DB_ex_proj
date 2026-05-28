@@ -1,0 +1,52 @@
+﻿@model IEnumerable<DB_ex_proj.Models.Certificate>
+
+@{
+    ViewData["Title"] = "Запит 2";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary">🔍 Запит 2: Видані сертифікати за курс</h2>
+    <p class="text-muted">Об'єднання таблиць: <b>Certificates, Courses, Students</b>.</p>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <form asp-action="Query2" method="get" class="d-flex align-items-end gap-3">
+                <div class="flex-grow-1">
+                    <label for="courseTitle" class="form-label fw-bold">Назва курсу (або частина):</label>
+                    <input type="text" id="courseTitle" name="courseTitle" class="form-control" placeholder="Напр: Основи C#" value="@ViewBag.SearchParameter" required />
+                </div>
+                <button type="submit" class="btn btn-primary">Шукати</button>
+                <a href="/" class="btn btn-outline-secondary">Меню</a>
+            </form>
+        </div>
+    </div>
+
+    @if (Model.Any())
+    {
+        <table class="table table-hover table-bordered shadow-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th>Код сертифіката</th>
+                    <th>Дата видачі</th>
+                    <th>Студент</th>
+                    <th>Навчальний курс</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="fw-bold text-success">@item.CertificateCode</td>
+                        <td>@item.IssueDate.ToShortDateString()</td>
+                        <td>@item.Student.FullName</td>
+                        <td>@item.Course.Title</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else if (ViewBag.SearchParameter != null)
+    {
+        <div class="alert alert-warning">За запитом "<b>@ViewBag.SearchParameter</b>" сертифікатів не знайдено.</div>
+    }
+</div>

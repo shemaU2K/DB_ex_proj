@@ -40,15 +40,29 @@
 
 <div class="row mt-4">
     <div class="col-12">
-        <div class="card shadow-sm bg-light">
+        <div class="card shadow-sm border-secondary">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0">📊 Аналітика та Запити (Частина 3)</h5>
+            </div>
             <div class="card-body">
-                <h5 class="card-title fw-bold text-secondary">📊 Аналітика та Запити (Частина 3)</h5>
-                <p class="card-text small text-muted">Тут будуть розміщені посилання на 5 простих параметризованих запитів та 2 запити з множинними порівняннями.</p>
-                <div class="btn-group w-100" role="group">
-                    <button class="btn btn-secondary disabled">Запит 1</button>
-                    <button class="btn btn-secondary disabled">Запит 2</button>
-                    <button class="btn btn-secondary disabled">Запит 3</button>
-                    <button class="btn btn-secondary disabled">Множинний запит 1</button>
+                <div class="row">
+                    <div class="col-md-6 border-end">
+                        <h6 class="text-primary fw-bold mb-3">Прості параметризовані запити (Більше 1 таблиці)</h6>
+                        <div class="d-grid gap-2">
+                            <a href="/Queries/Query1" class="btn btn-outline-primary text-start">1. Студенти певної групи</a>
+                            <a href="/Queries/Query2" class="btn btn-outline-primary text-start">2. Сертифікати, видані за курс</a>
+                            <a href="/Queries/Query3" class="btn btn-outline-primary text-start">3. Модулі курсу за тривалістю (годин)</a>
+                            <a href="/Queries/Query4" class="btn btn-outline-primary text-start">4. Розклад аудиторії (Групи в кабінеті)</a>
+                            <a href="/Queries/Query5" class="btn btn-outline-primary text-start">5. Викладачі, призначені на курс</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="text-danger fw-bold mb-3">Запити з множинними порівняннями</h6>
+                        <div class="d-grid gap-2">
+                            <a href="/Queries/Multiple1" class="btn btn-outline-danger text-start">✨ Викладачі з однаковим набором курсів</a>
+                            <a href="/Queries/Multiple2" class="btn btn-outline-danger text-start">✨ Студенти з сертифікатами як у заданого</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

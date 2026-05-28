@@ -1,0 +1,57 @@
+﻿@model IEnumerable<DB_ex_proj.Models.Student>
+
+@{
+    ViewData["Title"] = "Запит 1";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary">🔍 Запит 1: Студенти певної групи</h2>
+    <p class="text-muted">Демонструє об'єднання таблиць <b>Students</b> та <b>Groups</b>.</p>
+
+    <div class="card shadow-sm mb-4 border-primary">
+        <div class="card-body">
+            <form asp-action="Query1" method="get" class="d-flex align-items-end gap-3">
+                <div class="flex-grow-1">
+                    <label for="groupName" class="form-label fw-bold">Введіть назву групи (або частину назви):</label>
+                    <input type="text" id="groupName" name="groupName" class="form-control border-primary" placeholder="Наприклад: CS-2026" value="@ViewBag.SearchParameter" required />
+                </div>
+                <button type="submit" class="btn btn-primary">Шукати студентів</button>
+                <a href="/" class="btn btn-outline-secondary">↩ До меню</a>
+            </form>
+        </div>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="alert alert-success">
+            Знайдено записів: <strong>@Model.Count()</strong>
+        </div>
+        <table class="table table-hover table-bordered shadow-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th>ПІБ Студента</th>
+                    <th>Електронна пошта</th>
+                    <th>Рейтинг</th>
+                    <th>Навчальна група</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="fw-bold">@item.FullName</td>
+                        <td>@item.Email</td>
+                        <td>@item.Rating</td>
+                        <td><span class="badge bg-info text-dark fs-6">@item.Group.Name</span></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else if (ViewBag.SearchParameter != null)
+    {
+        <div class="alert alert-warning">
+            За вашим запитом "<b>@ViewBag.SearchParameter</b>" жодного студента не знайдено. Спробуйте іншу назву групи.
+        </div>
+    }
+</div>

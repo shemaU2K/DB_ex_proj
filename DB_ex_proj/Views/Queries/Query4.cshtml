@@ -1,0 +1,50 @@
+﻿@model IEnumerable<DB_ex_proj.Models.Group>
+
+@{
+    ViewData["Title"] = "Запит 4";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary">🔍 Запит 4: Розклад аудиторії</h2>
+    <p class="text-muted">Об'єднання таблиць: <b>Groups, Auditoriums</b>.</p>
+
+    <div class="card shadow-sm mb-4 border-info">
+        <div class="card-body">
+            <form asp-action="Query4" method="get" class="d-flex align-items-end gap-3">
+                <div class="flex-grow-1">
+                    <label for="roomNumber" class="form-label fw-bold">Номер кабінету (наприклад, 101-A):</label>
+                    <input type="text" id="roomNumber" name="roomNumber" class="form-control border-info" placeholder="Введіть номер..." value="@ViewBag.SearchParameter" required />
+                </div>
+                <button type="submit" class="btn btn-info text-white">Знайти групи</button>
+                <a href="/" class="btn btn-outline-secondary">↩ Меню</a>
+            </form>
+        </div>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-hover table-bordered shadow-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th>Назва групи</th>
+                    <th>Дата створення</th>
+                    <th>Закріплений кабінет</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="fw-bold">@item.Name</td>
+                        <td>@item.CreatedAt.ToShortDateString()</td>
+                        <td><span class="badge bg-info text-dark fs-6">@item.Auditorium.RoomNumber</span></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else if (ViewBag.SearchParameter != null)
+    {
+        <div class="alert alert-warning">В аудиторії "<b>@ViewBag.SearchParameter</b>" наразі не займається жодна група.</div>
+    }
+</div>

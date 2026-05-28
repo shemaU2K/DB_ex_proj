@@ -1,0 +1,50 @@
+﻿@model IEnumerable<DB_ex_proj.Models.Module>
+
+@{
+    ViewData["Title"] = "Запит 3";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary">🔍 Запит 3: Великі навчальні модулі</h2>
+    <p class="text-muted">Об'єднання таблиць: <b>Modules, Courses</b>.</p>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <form asp-action="Query3" method="get" class="d-flex align-items-end gap-3">
+                <div class="flex-grow-1">
+                    <label for="minHours" class="form-label fw-bold">Мінімальна кількість годин (X >= параметру):</label>
+                    <input type="number" id="minHours" name="minHours" class="form-control" placeholder="Напр: 15" value="@ViewBag.SearchParameter" required min="1" />
+                </div>
+                <button type="submit" class="btn btn-primary">Шукати</button>
+                <a href="/" class="btn btn-outline-secondary">Меню</a>
+            </form>
+        </div>
+    </div>
+
+    @if (Model.Any())
+    {
+        <table class="table table-hover table-bordered shadow-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th>Назва модуля (розділу)</th>
+                    <th>Кількість годин</th>
+                    <th>Належить до курсу</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.SectionName</td>
+                        <td><span class="badge bg-danger fs-6">@item.Hours год.</span></td>
+                        <td>@item.Course.Title</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else if (ViewBag.SearchParameter != null)
+    {
+        <div class="alert alert-warning">Модулів, більших за <b>@ViewBag.SearchParameter</b> годин, не знайдено.</div>
+    }
+</div>
