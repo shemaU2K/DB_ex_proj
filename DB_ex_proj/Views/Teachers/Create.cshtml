@@ -1,0 +1,56 @@
+﻿@model DB_ex_proj.Models.Teacher
+
+@{
+    ViewData["Title"] = "Додати викладача";
+}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0">👨‍🏫 Реєстрація нового Викладача</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create" method="post">
+                    <div class="mb-3">
+                        <label asp-for="FullName" class="form-label">ПІБ викладача</label>
+                        <input asp-for="FullName" class="form-control" required placeholder="Наприклад: Бойко Олена Вікторівна" />
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Email" class="form-label">Електронна пошта</label>
+                            <input asp-for="Email" type="email" class="form-control" required />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Password" class="form-label">Пароль</label>
+                            <input asp-for="Password" type="password" class="form-control" required />
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Passport" class="form-label">Паспортні дані</label>
+                        <input asp-for="Passport" class="form-control" required placeholder="Серія та номер або ID" />
+                    </div>
+
+                    <hr />
+
+                    <div class="mb-3">
+                        <label asp-for="Specialization" class="form-label fw-bold">Спеціалізація</label>
+                        <input asp-for="Specialization" class="form-control" required placeholder="Напр: Frontend Розробка, Бази даних" />
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Biography" class="form-label fw-bold">Професійна біографія</label>
+                        <textarea asp-for="Biography" class="form-control" rows="3" required placeholder="Короткий опис досвіду роботи..."></textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="/" class="btn btn-outline-secondary">↩ Повернутись до меню</a>
+                        <button type="submit" class="btn btn-success">💾 Зберегти дані</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
