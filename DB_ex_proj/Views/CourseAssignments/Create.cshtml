@@ -1,0 +1,45 @@
+﻿@model DB_ex_proj.Models.CourseAssignment
+
+@{
+    ViewData["Title"] = "Призначення викладача";
+}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+        <div class="card shadow border-success">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">🔗 Призначити викладача на курс</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create" method="post">
+
+                    <div class="mb-3">
+                        <label asp-for="TeacherId" class="form-label fw-bold text-primary">👨‍🏫 Викладач</label>
+                        <select asp-for="TeacherId" class="form-select border-primary" asp-items="ViewBag.Teachers" required>
+                            <option value="">-- Оберіть викладача --</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="CourseId" class="form-label fw-bold text-success">📚 Курс</label>
+                        <select asp-for="CourseId" class="form-select border-success" asp-items="ViewBag.Courses" required>
+                            <option value="">-- Оберіть навчальну програму --</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="GroupId" class="form-label fw-bold text-info">👥 Група</label>
+                        <select asp-for="GroupId" class="form-select border-info" asp-items="ViewBag.Groups" required>
+                            <option value="">-- Оберіть групу --</option>
+                        </select>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="/" class="btn btn-outline-secondary">↩ Повернутись до меню</a>
+                        <button type="submit" class="btn btn-success">💾 Зберегти призначення</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
