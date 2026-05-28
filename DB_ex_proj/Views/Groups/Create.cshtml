@@ -1,0 +1,40 @@
+﻿@model DB_ex_proj.Models.Group
+
+@{
+    ViewData["Title"] = "Створити групу";
+}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0">👥 Створення навчальної Групи</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label">Назва групи</label>
+                        <input asp-for="Name" class="form-control" required placeholder="Напр: QA-2026" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="CreatedAt" class="form-label">Дата створення</label>
+                        <input asp-for="CreatedAt" type="date" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="AuditoriumId" class="form-label fw-bold">Закріплена Аудиторія</label>
+                        <select asp-for="AuditoriumId" class="form-select" asp-items="ViewBag.Auditoriums" required>
+                            <option value="">-- Оберіть кабінет зі списку --</option>
+                        </select>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="/" class="btn btn-outline-secondary">↩ Повернутись до меню</a>
+                        <button type="submit" class="btn btn-success">💾 Зберегти групу</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
